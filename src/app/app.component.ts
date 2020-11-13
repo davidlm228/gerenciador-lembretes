@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './services/authentication.service';
 
+
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,22 +11,22 @@ import { AuthenticationService } from './services/authentication.service';
 })
 export class AppComponent {
   constructor(
-    private authenticationService:AuthenticationService
+    public authenticationService:AuthenticationService
   ){
   }
-  
+
   email: string;
   password: string;
 
   signUp() {
     this.authenticationService.SignUp(this.email, this.password);
-    this.email = ''; 
+    this.email = '';
     this.password = '';
   }
 
   signIn() {
     this.authenticationService.SignIn(this.email, this.password);
-    this.email = ''; 
+    this.email = '';
     this.password = '';
   }
 

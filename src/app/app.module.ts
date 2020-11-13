@@ -12,9 +12,13 @@ import { environment } from '../environments/environment';
 
 /* Auth service */
 import { AuthenticationService } from './services/authentication.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

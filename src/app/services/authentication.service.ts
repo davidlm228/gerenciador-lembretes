@@ -19,11 +19,11 @@ export class AuthenticationService {
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then(res => {
-        console.log('Successfully signed up!', res);
+        console.log('You are Successfully signed up!', res);
       })
       .catch(error => {
         console.log('Something is wrong:', error.message);
-      });    
+      });
   }
 
   /* Sign in */
@@ -32,7 +32,7 @@ export class AuthenticationService {
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        console.log('Successfully signed in!');
+        console.log('You are Successfully logged in!');
       })
       .catch(err => {
         console.log('Something is wrong:',err.message);
@@ -44,6 +44,6 @@ export class AuthenticationService {
     this.angularFireAuth
       .auth
       .signOut();
-  }  
+  }
 
 }
