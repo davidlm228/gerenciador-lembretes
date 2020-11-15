@@ -4,29 +4,9 @@ const bodyParser = require ('body-parser');
 const mongoose = require ('mongoose');
 const Cliente = require('./models/cliente');
 mongoose.connect('mongodb+srv://user:user@cluster0.iud3g.mongodb.net/clientes?retryWrites=true&w=majority')
-.then(() =>  console.log ("Conexao OK")).catch(() => console.log ("Conexão NOK"));
+.then(() =>  console.log ("Conexao OK")).catch(() => console.log ("Conexão Falhou"));
 app.use(express.json());
 
-const clientes = [
-  {
-    id: '1',
-    nome: 'Jose',
-    fone: '11223344',
-    email: 'jose@email.com'
-  },
-  {
-    id: '2',
-    nome: 'Maria',
-    fone: '2119992233',
-    email: 'maria@email.com'
-  },
-  {
-    id: '3',
-    nome: 'Afonso',
-    fone: '11998877',
-    email: 'afonso@email.com'
-  }
-];
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
