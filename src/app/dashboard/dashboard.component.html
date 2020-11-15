@@ -1,0 +1,12 @@
+<!-- USUARIO LOGADO -->
+<h1 *ngIf="authenticationService && authenticationService.userData | async">Hello {{ (authenticationService.userData | async)?.email }}</h1>
+
+<!-- USUARIO LOGADO -->
+<button (click)="signOut()" class="btn btn-primary" *ngIf="authenticationService.userData | async" >
+
+  Logout
+
+</button>
+
+
+

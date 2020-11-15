@@ -1,0 +1,9 @@
+.mat-card {
+  margin-top: 100px;
+}
+
+.loginpage {
+  background-image: url(../../assets/login-backgroud.jpg);
+  height: 100%;
+  background-size: cover;
+}
