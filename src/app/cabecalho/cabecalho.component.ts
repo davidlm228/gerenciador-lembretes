@@ -18,7 +18,7 @@ export class CabecalhoComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '500px'
+      width: '2000px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

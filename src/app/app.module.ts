@@ -12,7 +12,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 /* Auth service */
 import { AuthenticationService } from './services/authentication.service';
 
-
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 /* Angular Material */
@@ -64,8 +64,11 @@ import { DialogComponent } from './clientes/dialog/dialog.component';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
+  entryComponents: [DialogComponent],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })

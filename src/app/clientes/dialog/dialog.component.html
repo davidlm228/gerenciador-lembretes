@@ -1,5 +1,73 @@
-<h1 mat-mat-dialog-title> HI DAVID </h1>
-<div mat-dialog-actions>
-  <button mat-button (click)="cancel()"> No </button>
 
-</div>
+  <mat-card>
+    <form (submit)="onSalvarCliente(clienteForm)" #clienteForm="ngForm">
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Digite seu nome"
+          name="nome"
+          [ngModel]="cliente?.nome"
+          required
+          minlength="3"
+          #nome="ngModel"
+        />
+        <mat-error *ngIf="nome.invalid">Digite um nome válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="fone"
+          name="fone"
+          [ngModel]="cliente?.fone"
+          required
+          #fone="ngModel"
+        />
+        <mat-error *ngIf="fone.invalid">Digite um telefone válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="email"
+          name="email"
+          [ngModel]="cliente?.email"
+          required
+          #email="ngModel"
+        />
+        <mat-error *ngIf="email.invalid">Digite um email válido</mat-error>
+      </mat-form-field>
+
+      <!--<mat-form-field appearance="fill"> -->
+      <mat-form-field>
+        <mat-label>Data de início</mat-label>
+        <input
+          matInput [matDatepicker]="picker"
+
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <!--<mat-form-field appearance="fill"> -->
+        <mat-form-field>
+          <mat-label>Data de início</mat-label>
+          <input
+            matInput [matDatepicker]="pickers"
+          >
+          <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+          <mat-datepicker #pickers></mat-datepicker>
+        </mat-form-field>
+
+
+      <button color="accent" mat-raised-button>
+        Salvar Cliente
+      </button>
+    </form>
+  </mat-card>
+
+
+
