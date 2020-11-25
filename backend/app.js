@@ -2,8 +2,8 @@ const express = require ('express');
 const app = express();
 const bodyParser = require ('body-parser');
 const mongoose = require ('mongoose');
-const Cliente = require('./models/cliente');
-mongoose.connect('mongodb+srv://user:user@cluster0.iud3g.mongodb.net/clientes?retryWrites=true&w=majority')
+const Lembrete = require('./models/lembrete');
+mongoose.connect('mongodb+srv://user:user@cluster0.iud3g.mongodb.net/lembretes?retryWrites=true&w=majority')
 .then(() =>  console.log ("Conexao OK")).catch(() => console.log ("Conexão Falhou"));
 app.use(express.json());
 
@@ -15,60 +15,58 @@ app.use((req, res, next) => {
   next()
 });
 
-//DELETE /api/clientes/eii1349fewajlçf1
-app.delete('/api/clientes/:id', (req, res, next) => {
-  //console.log ("Params: " + JSON.stringify(req.params));
-  Cliente.deleteOne({ _id: req.params.id }).then((resultado) => {
+
+app.delete('/api/lembretes/:id', (req, res, next) => {
+  Lembrete.deleteOne({ _id: req.params.id }).then((resultado) => {
     console.log(resultado);
-    res.status(200).json({ mensagem: "Cliente removido" });
+    res.status(200).json({ mensagem: "Lembrete removido" });
   })
 })
 
 
-//http://localhost:3000/api/clientes
-app.get('/api/clientes', (req, res, next) => {
-  Cliente.find().then(documents => {
+app.get('/api/lembretes', (req, res, next) => {
+  Lembrete.find().then(documents => {
     console.log(documents);
     res.status(200).json({
       mensagem: "Tudo OK",
-      clientes: documents
+      lembretes: documents
     });
   })
 });
 
-app.get('/api/clientes/:id', (req, res, next) => {
-  Cliente.findById(req.params.id).then(cli => {
+app.get('/api/lembretes/:id', (req, res, next) => {
+  Lembrete.findById(req.params.id).then(cli => {
     if (cli) {
       res.status(200).json(cli);
     }
     else
-      res.status(404).json({ mensagem: "Cliente não encontrado!" })
+      res.status(404).json({ mensagem: "Lembrete não encontrado!" })
   })
 });
 
 
-app.post('/api/clientes', (req, res, next) => {
-  const cliente = new Cliente({
+app.post('/api/lembretes', (req, res, next) => {
+  const lembrete = new Lembrete({
     nome: req.body.nome,
     fone: req.body.fone,
-    email: req.body.email
+    datainicio: req.body.datainicio
   })
-  cliente.save().then(clienteInserido => {
-    console.log(clienteInserido);
-    res.status(201).json({ mensagem: 'Cliente inserido', id: clienteInserido._id })
+  lembrete.save().then(lembreteInserido => {
+    console.log(lembreteInserido);
+    res.status(201).json({ mensagem: 'Lembrete inserido', id: lembreteInserido._id })
   });
 });
 
 
 
-app.put("/api/clientes/:id", (req, res, next) => {
-  const cliente = new Cliente({
+app.put("/api/lembretes/:id", (req, res, next) => {
+  const lembrete = new Lembrete({
     _id: req.params.id,
     nome: req.body.nome,
     fone: req.body.fone,
-    email: req.body.email
+    datainicio: req.body.datainicio
   });
-  Cliente.updateOne({ _id: req.params.id }, cliente)
+  Lembrete.updateOne({ _id: req.params.id }, lembrete)
     .then((resultado) => {
       console.log(resultado)
     });

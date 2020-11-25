@@ -27,12 +27,16 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 
 /* Components */
-import { ClienteInserirComponent } from './clientes/cliente-inserir/cliente-inserir.component';
-import { ClienteListaComponent } from './clientes/cliente-lista/cliente-lista.component';
+import { LembreteInserirComponent } from './lembretes/lembrete-inserir/lembrete-inserir.component';
+import { LembreteListaComponent } from './lembretes/lembrete-lista/lembrete-lista.component';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { DialogComponent } from './clientes/dialog/dialog.component';
+import { DialogComponent } from './lembretes/dialog/dialog.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -41,10 +45,11 @@ import { DialogComponent } from './clientes/dialog/dialog.component';
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    ClienteInserirComponent,
-    ClienteListaComponent,
+    LembreteInserirComponent,
+    LembreteListaComponent,
     CabecalhoComponent,
-    DialogComponent
+    DialogComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +71,10 @@ import { DialogComponent } from './clientes/dialog/dialog.component';
     MatInputModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule
   ],
   entryComponents: [DialogComponent],
   providers: [AuthenticationService],

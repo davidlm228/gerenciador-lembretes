@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../clientes/dialog/dialog.component';
+import { DialogComponent } from '../lembretes/dialog/dialog.component';
+
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+
 
 @Component({
   selector: 'app-cabecalho',
@@ -10,7 +14,9 @@ import { DialogComponent } from '../clientes/dialog/dialog.component';
 export class CabecalhoComponent implements OnInit {
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public authenticationService:AuthenticationService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -18,12 +24,17 @@ export class CabecalhoComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '2000px'
+      width: '600px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  signOut() {
+    this.authenticationService.SignOut();
+    this.router.navigate(['']);
   }
 
 

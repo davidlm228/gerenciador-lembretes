@@ -1,10 +1,12 @@
 <mat-toolbar color="primary">
-  <span><a routerLink="lista">Clientes</a></span>
+  <span>Lembretes</span>
    <span class="separador"></span>
   <div>
+    <button (click)="signOut()" class="btn btn-primary" *ngIf="authenticationService.userData | async" >
 
-    <button mat-raised-button (click)="openDialog()">Pick one</button>
-    <li><a mat-button routerLink="/criar"  routerLinkActive="mat-accent">Novo Cliente</a></li>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">login</mat-icon>
+
+    </button>
   </div>
 
 

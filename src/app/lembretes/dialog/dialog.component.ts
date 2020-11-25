@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
-//import { Cliente } from '../cliente.model';
-import { ClienteService } from '../cliente.service';
+import { LembreteService } from '../lembrete.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Cliente } from '../cliente.model';
+import { Lembrete } from '../lembrete.model';
 
 @Component({
   selector: 'app-dialog',
@@ -14,76 +13,59 @@ import { Cliente } from '../cliente.model';
 export class DialogComponent implements OnInit {
 
   private modo: string = "criar";
-  private idCliente: string;
-  public cliente: Cliente;
+  private idLembrete: string;
+  public lembrete: Lembrete;
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("idCliente")) {
+      if (paramMap.has("idLembrete")) {
         this.modo = "editar";
-        this.idCliente = paramMap.get("idCliente");
-        this.clienteService.getCliente(this.idCliente).subscribe(dadosCli => {
-          this.cliente = {
+        this.idLembrete = paramMap.get("idLembrete");
+        this.lembreteService.getLembrete(this.idLembrete).subscribe(dadosCli => {
+          this.lembrete = {
             id: dadosCli._id,
             nome: dadosCli.nome,
             fone: dadosCli.fone,
-            email: dadosCli.email
+            datainicio: dadosCli.datainicio
           };
         });
       }
       else {
         this.modo = "criar";
-        this.idCliente = null;
+        this.idLembrete = null;
       }
     });
   }
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    public clienteService: ClienteService,
+    public lembreteService: LembreteService,
     public route: ActivatedRoute
 
   ) { }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   cancel(): void {
     this.dialogRef.close();
   }
 
-  onSalvarCliente(form: NgForm) {
+  onSalvarLembrete(form: NgForm) {
     if (form.invalid) {
       return;
     }
     if (this.modo === "criar") {
-      this.clienteService.adicionarCliente(
+      this.lembreteService.adicionarLembrete(
         form.value.nome,
         form.value.fone,
-        form.value.email
+        form.value.datainicio
       );
     }
     else {
-      this.clienteService.atualizarCliente(
-        this.idCliente,
+      this.lembreteService.atualizarLembrete(
+        this.idLembrete,
         form.value.nome,
         form.value.fone,
-        form.value.email
+        form.value.datainicio
       )
     }
     form.resetForm();

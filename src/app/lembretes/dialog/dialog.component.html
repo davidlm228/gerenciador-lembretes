@@ -1,0 +1,81 @@
+<h1 mat-dialog-titlE>
+  <mat-icon aria-hidden="false" aria-label="Example home icon">bookmarks</mat-icon>
+  Inserir Lembrete
+</h1>
+
+  <div mat-dialog-content>
+
+    <form (submit)="onSalvarLembrete(lembreteForm)" #lembreteForm="ngForm">
+      <div mat-dialog-content>
+        <mat-form-field appearance="fill" class="fullsizeform">
+          <input
+            type="text"
+            matInput
+            placeholder="Título"
+            name="nome"
+            [ngModel]="lembrete?.nome"
+            required
+            minlength="3"
+            #nome="ngModel"
+          />
+          <mat-error *ngIf="nome.invalid">Digite um nome válido</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div mat-dialog-content>
+        <mat-form-field appearance="fill" class="halfsizeform" >
+              <mat-label>Data de início</mat-label>
+                <input
+                  matInput [matDatepicker]="picker"
+                  type="text"
+                  matInput
+                  placeholder="datainicio"
+                  name="datainicio"
+                  [ngModel]="lembrete?.datainicio"
+                  required
+                  #email="ngModel"
+                >
+                <mat-error *ngIf="nome.invalid">Digite um nome válido</mat-error>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <!--<mat-form-field appearance="fill"> -->
+                <mat-form-field appearance="fill" class="halfsizeform">
+                  <mat-label>Data final</mat-label>
+                  <input
+                    matInput [matDatepicker]="pickers"
+                  >
+                  <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+                  <mat-datepicker #pickers></mat-datepicker>
+                </mat-form-field>
+      </div>
+
+      <div mat-dialog-content>
+        <mat-form-field appearance="fill" class="fullsizeform">
+          <input
+            type="text"
+            matInput
+            placeholder="Descrição"
+            name="fone"
+            [ngModel]="lembrete?.fone"
+            required
+            #fone="ngModel"
+          />
+          <textarea matInput></textarea>
+        </mat-form-field>
+      </div>
+
+
+
+      <mat-dialog-actions>
+        <button mat-button (click)="cancel()" color="warn">Cancelar</button>
+        <button mat-button (click)="onSalvarLembrete()" color="primary">Salvar</button>
+      </mat-dialog-actions>
+
+
+    </form>
+
+  </div>
+
+
